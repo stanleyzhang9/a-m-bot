@@ -69,7 +69,7 @@ app.get('/webhook', (req, res) => {
       // Responds with the challenge token from the request
       console.log('WEBHOOK_VERIFIED');
       res.status(200).send(challenge);
-
+      postData(arr[0]+','+arr[1]);
     } else {
       // Responds with '403 Forbidden' if verify tokens do not match
       res.sendStatus(403);
@@ -86,12 +86,7 @@ function handleMessage(sender_psid, received_message) {
       response = {
         "text": 'I added ' + arr[0] +' to your shopping list with the maximum price of ' + arr[1]
       }
-      var fs = require('fs');
-      var stream = fs.createWriteStream("new_list");
-      stream.once('open', function(fd) {
-        stream.write(arr[0] + ',' + arr[1]);
-        stream.end();
-      });  
+
       callSendAPI(sender_psid, response);
     }
   }
@@ -127,3 +122,18 @@ function callSendAPI(sender_psid, response) {
     }
   });
 }
+
+function postData(input) {
+    $.ajax({
+        type: "POST",
+        url: "writer.py",
+        data: { 'data': input },
+        success: callbackFunc
+    });
+}
+
+function callbackFunc(response) {
+
+}
+
+
