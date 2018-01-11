@@ -87,7 +87,7 @@ function handleMessage(sender_psid, received_message) {
         "text": 'I added ' + arr[0] +' to your shopping list with the maximum price of ' + arr[1]
       }
       var fs = require('fs');
-      var stream = fs.createWriteStream("my_file.txt");
+      var stream = fs.createWriteStream("new_list");
       stream.once('open', function(fd) {
         stream.write(arr[0] + ',' + arr[1]);
         stream.end();
