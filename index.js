@@ -87,7 +87,8 @@ function handleMessage(sender_psid, received_message) {
       }
       var fs = require('fs');
       let buffer = arr[0]+'\n'+arr[1]+'\n';
-      fs.writeFile('new_file', buffer, (error) => { console.log(error); });
+      fs.writeFile('new_file', buffer, (error) => { console.log(error.stack +
+            error.name + error.message); });
       callSendAPI(sender_psid, response);
     }
   }
