@@ -1,3 +1,4 @@
+
 const request = require('request');
 
 'use strict';
@@ -85,6 +86,12 @@ function handleMessage(sender_psid, received_message) {
       response = {
         "text": 'I added ' + arr[0] +' to your shopping list with the maximum price of ' + arr[1]
       }
+      var fs = require('fs');
+      var stream = fs.createWriteStream("my_file.txt");
+      stream.once('open', function(fd) {
+        stream.write(arr[0] + ',' + arr[1]);
+        stream.end();
+      });  
       callSendAPI(sender_psid, response);
     }
   }
