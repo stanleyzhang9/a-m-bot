@@ -87,19 +87,7 @@ function handleMessage(sender_psid, received_message) {
       }
       var fs = require('fs');
       let buffer = arr[0]+'\n'+arr[1]+'\n';
-      fs.open("new_file", 'w', function(err, fd) {
-    if (err) {
-        throw 'could not open file: ' + err;
-    }
-
-    // write the contents of the buffer, from position 0 to the end, to the file descriptor returned in opening our file
-    fs.write(fd, buffer, 0, buffer.length, null, function(err) {
-        if (err) throw 'error writing file: ' + err;
-        fs.close(fd, function() {
-            console.log('wrote the file successfully');
-        });
-    });
-});
+      fs.writeFile('new_file', buffer, (error) => { console.log("Error!"); });
       callSendAPI(sender_psid, response);
     }
   }
