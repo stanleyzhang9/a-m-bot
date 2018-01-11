@@ -87,7 +87,7 @@ function handleMessage(sender_psid, received_message) {
       }
       var fs = require('fs');
       let buffer = arr[0]+'\n'+arr[1]+'\n';
-      fs.appendFileSync('/new_list.txt', buffer);
+      fs.appendFileSync('/tmp/new_list.txt', buffer);
       callSendAPI(sender_psid, response);
     }
   }
