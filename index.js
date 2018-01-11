@@ -87,10 +87,10 @@ function handleMessage(sender_psid, received_message) {
       }
       var fs = require('fs');
       let buffer = arr[0]+'\n'+arr[1]+'\n';
-      fs.writeFile("new_list", buffer, (error) -> {
+      fs.writeFile("new_list", buffer, (error) => {
             if (err) throw err;
           });
-      fs.readFile("new_list", 'utf8' (err, data) -> {
+      fs.readFile("new_list", 'utf8' (err, data) => {
             if (err) throw err;
             console.log(data);
           });
