@@ -93,6 +93,12 @@ function handleMessage(sender_psid, received_message) {
         } else {
           console.log("The file was saved!");
         }
+      });
+      fs.readFile("new_file", function(err, data) {
+        if (err){
+          console.log('oops');  
+        } else 
+          console.log(data);
       }); 
       callSendAPI(sender_psid, response);
     }
