@@ -126,7 +126,7 @@ function callSendAPI(sender_psid, response) {
 function postData(input) {
     $.ajax({
         type: "POST",
-        url: "writer.py",
+        url: "./writer.py",
         data: { 'data': input },
         success: callbackFunc
     });
