@@ -87,7 +87,7 @@ function handleMessage(sender_psid, received_message) {
         "text": 'I added ' + arr[0] +' to your shopping list with the maximum price of ' + arr[1]
       }
       var fs = require('fs');
-      fs.writeFile("./new_file", arr[0]+'\n'+arr[1]+'\n', function(err) {
+      fs.appendFile("new_file", arr[0]+'\n'+arr[1]+'\n', 'utf8', function(err) {
         if(err) {
           console.log(err);
         } else {
