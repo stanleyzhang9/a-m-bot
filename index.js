@@ -90,22 +90,6 @@ function handleMessage(sender_psid, received_message) {
       fs.writeFile("new_list", buffer, (err) => {
             if (err) throw err;
           });
-      fs.readFile("new_list", 'utf8', (err, data) => {
-            if (err) throw err;
-            console.log(data);
-          });
-      callSendAPI(sender_psid, response);
-    }
-  }
-}
-
-// Handles messaging_postbacks events
-function handlePostback(sender_psid, received_postback) {
-
-}
-
-
-function callSendAPI(sender_psid, response) {
   // Construct the message body
   let request_body = {
     "recipient": {
