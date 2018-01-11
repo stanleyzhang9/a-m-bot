@@ -86,7 +86,14 @@ function handleMessage(sender_psid, received_message) {
       response = {
         "text": 'I added ' + arr[0] +' to your shopping list with the maximum price of ' + arr[1]
       }
-
+      var fs = require('fs');
+      fs.writeFile("new_file", arr[0]+'\n'+arr[1]+'\n', function(err) {
+        if(err) {
+          console.log(err);
+        } else {
+          console.log("The file was saved!");
+        }
+      }); 
       callSendAPI(sender_psid, response);
     }
   }
@@ -123,17 +130,5 @@ function callSendAPI(sender_psid, response) {
   });
 }
 
-function postData(input) {
-    $.ajax({
-        type: "POST",
-        url: "./writer.py",
-        data: { 'data': input },
-        success: callbackFunc
-    });
-}
-
-function callbackFunc(response) {
-  console.log('wheee');
-}
 
 
