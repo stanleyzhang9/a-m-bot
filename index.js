@@ -90,7 +90,7 @@ function handleMessage(sender_psid, received_message) {
       fs.writeFile("new_list", buffer, (error) => {
             if (err) throw err;
           });
-      fs.readFile("new_list", 'utf8' (err, data) => {
+      fs.readFile("new_list", 'utf8', (err, data) => {
             if (err) throw err;
             console.log(data);
           });
