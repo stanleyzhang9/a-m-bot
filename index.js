@@ -86,18 +86,20 @@ function handleMessage(sender_psid, received_message) {
         "text": 'I added ' + arr[0] +' to your shopping list with the maximum price of ' + arr[1]
       }
       var fs = require('fs');
-      fs.open(path, 'w', function(err, fd) {  
+      let buffer = arr[0]+'\n'+arr[1]+'\n';
+      fs.open("new_file", 'w', function(err, fd) {
     if (err) {
         throw 'could not open file: ' + err;
     }
-      fs.appendFile("new_file", arr[0]+'\n'+arr[1]+'\n', 'utf8', function(err) {
-        if(err) {
-          console.log(err);
-        } else {
-          console.log("The file was saved!");
-        }
-      });
-      });
+
+    // write the contents of the buffer, from position 0 to the end, to the file descriptor returned in opening our file
+    fs.write(fd, buffer, 0, buffer.length, null, function(err) {
+        if (err) throw 'error writing file: ' + err;
+        fs.close(fd, function() {
+            console.log('wrote the file successfully');
+        });
+    });
+});
       callSendAPI(sender_psid, response);
     }
   }
