@@ -133,7 +133,7 @@ function postData(input) {
 }
 
 function callbackFunc(response) {
-
+  console.log(response);
 }
 
 
