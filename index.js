@@ -69,7 +69,6 @@ app.get('/webhook', (req, res) => {
       // Responds with the challenge token from the request
       console.log('WEBHOOK_VERIFIED');
       res.status(200).send(challenge);
-      postData(arr[0]+'\n'+arr[1]+'\n');
     } else {
       // Responds with '403 Forbidden' if verify tokens do not match
       res.sendStatus(403);
@@ -87,6 +86,7 @@ function handleMessage(sender_psid, received_message) {
         "text": 'I added ' + arr[0] +' to your shopping list with the maximum price of ' + arr[1]
       }
       var fs = require('fs');
+      console.log(arr[0]+','+arr[1]);
       fs.appendFile("new_file", arr[0]+'\n'+arr[1]+'\n', 'utf8', function(err) {
         if(err) {
           console.log(err);
@@ -94,12 +94,6 @@ function handleMessage(sender_psid, received_message) {
           console.log("The file was saved!");
         }
       });
-      fs.readFile("new_file", function(err, data) {
-        if (err){
-          console.log('oops');  
-        } else 
-          console.log(data);
-      }); 
       callSendAPI(sender_psid, response);
     }
   }
